@@ -84,5 +84,14 @@
 
   </div>
   <script src="js/app.js"></script>
+  <script>
+  var reply_click = function()
+  {
+    alert("Button clicked, id "+this.id);
+  }
+  document.getElementById('1').onclick = reply_click;
+  document.getElementById('2').onclick = reply_click;
+  document.getElementById('3').onclick = reply_click;
+  </script>
 </body>
 </html>
