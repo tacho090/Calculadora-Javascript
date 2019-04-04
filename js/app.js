@@ -40,7 +40,29 @@ var Calculadora = {
     number.value = parseInt(this.id, 10);
   },
   identify: function(){
-
+    document.getElementById('on').onclick = Calculadora.press;
+    document.getElementById('sign').onclick = Calculadora.press;
+    document.getElementById('raiz').onclick = Calculadora.press;
+    document.getElementById('dividido').onclick = Calculadora.press;
+    document.getElementById('por').onclick = Calculadora.press;
+    document.getElementById('menos').onclick = Calculadora.press;
+    document.getElementById('punto').onclick = Calculadora.press;
+    document.getElementById('igual').onclick = Calculadora.press;
+    document.getElementById('mas').onclick = Calculadora.press;
+    document.getElementById("mas").addEventListener("click", Calculadora.sum);
+    //document.getElementById("1").addEventListener("click", Calculadora.press);
+    document.getElementById("1").addEventListener("click", Calculadora.string);
+    //document.getElementById("1").addEventListener("click", Calculadora.assignNum);
+    //document.getElementById('1').onclick = Calculadora.press, Calculadora.asignar;
+    document.getElementById('2').onclick = Calculadora.press;
+    document.getElementById('3').onclick = Calculadora.press;
+    document.getElementById('4').onclick = Calculadora.press;
+    document.getElementById('5').onclick = Calculadora.press;
+    document.getElementById('6').onclick = Calculadora.press;
+    document.getElementById('7').onclick = Calculadora.press;
+    document.getElementById('8').onclick = Calculadora.press;
+    document.getElementById('9').onclick = Calculadora.press;
+    document.getElementById('0').onclick = Calculadora.press;
   },
   sum: function(num1){
 
@@ -53,7 +75,7 @@ var Calculadora = {
 /*Nuevas lineas de codigo*/
 /*//////////*Get element ID with click*//////////////
 
-document.getElementById('on').onclick = Calculadora.press;
+/*document.getElementById('on').onclick = Calculadora.press;
 document.getElementById('sign').onclick = Calculadora.press;
 document.getElementById('raiz').onclick = Calculadora.press;
 document.getElementById('dividido').onclick = Calculadora.press;
@@ -75,7 +97,7 @@ document.getElementById('6').onclick = Calculadora.press;
 document.getElementById('7').onclick = Calculadora.press;
 document.getElementById('8').onclick = Calculadora.press;
 document.getElementById('9').onclick = Calculadora.press;
-document.getElementById('0').onclick = Calculadora.press;
+document.getElementById('0').onclick = Calculadora.press;*/
 
 
 ////////////////////////////////////////////////////////*/
