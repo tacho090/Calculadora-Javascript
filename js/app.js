@@ -1,4 +1,5 @@
 var string_num_total = "";
+var boolean = true;
 
 var Calculadora = {
 
@@ -27,46 +28,47 @@ var Calculadora = {
     document.getElementById(id).style.width = "22%";
     document.getElementById(id).style.height = "62.91px";
   },
-  string: function(){
-    string_num = this.id;
+  string1: function(id){
+    string_num = id;
     string_num_total = string_num_total + string_num;
     console.log(string_num_total);
+    return string_num_total;
+  },
+  string2: function(id){
+    string_num = id;
+    string_num_total = string_num_total + string_num;
+    console.log(string_num_total);
+    return string_num_total;
   },
   string_to_number: function(){
 
   },
-  assignNum:function(){
-    number = document.getElementById(this.id);
-    number.value = parseInt(this.id, 10);
+  /*assignNum:function(number){
+    //number = document.getElementById(number);
+    console.log(number)
+    number = parseInt(number, 10);
+    console.log("variable type: " + typeof number + number.toString());
+
+  },*/
+  boolean: function(bool){
+    boolean = bool;
+    return boolean;
   },
-  identify: function(){
-    document.getElementById('on').onclick = Calculadora.press;
-    document.getElementById('sign').onclick = Calculadora.press;
-    document.getElementById('raiz').onclick = Calculadora.press;
-    document.getElementById('dividido').onclick = Calculadora.press;
-    document.getElementById('por').onclick = Calculadora.press;
-    document.getElementById('menos').onclick = Calculadora.press;
-    document.getElementById('punto').onclick = Calculadora.press;
-    document.getElementById('igual').onclick = Calculadora.press;
-    document.getElementById('mas').onclick = Calculadora.press;
-    document.getElementById("mas").addEventListener("click", Calculadora.sum);
-    //document.getElementById("1").addEventListener("click", Calculadora.press);
-    document.getElementById("1").addEventListener("click", Calculadora.string);
-    //document.getElementById("1").addEventListener("click", Calculadora.assignNum);
-    //document.getElementById('1').onclick = Calculadora.press, Calculadora.asignar;
-    document.getElementById('2').onclick = Calculadora.press;
-    document.getElementById('3').onclick = Calculadora.press;
-    document.getElementById('4').onclick = Calculadora.press;
-    document.getElementById('5').onclick = Calculadora.press;
-    document.getElementById('6').onclick = Calculadora.press;
-    document.getElementById('7').onclick = Calculadora.press;
-    document.getElementById('8').onclick = Calculadora.press;
-    document.getElementById('9').onclick = Calculadora.press;
-    document.getElementById('0').onclick = Calculadora.press;
+  identify: function(id){
+    id = this.id;
+    //number = this.id;
+    //console.log("ID: " + this.id);
+    if(Calculadora.boolean == true){
+      Calculadora.string1(id);
+    }else{
+      Calculadora.string2(id);
+    }
+    //Calculadora.assignNum(number);
+
   },
   sum: function(num1){
-
-    var result = num1 + this.identify();
+    console.log(Calculadora.string1 + " y " + Calculadora.string2)
+    //var result = Calculadora.string1 + Calculadora.string2;
   }
 
 
@@ -75,7 +77,7 @@ var Calculadora = {
 /*Nuevas lineas de codigo*/
 /*//////////*Get element ID with click*//////////////
 
-/*document.getElementById('on').onclick = Calculadora.press;
+document.getElementById('on').onclick = Calculadora.press;
 document.getElementById('sign').onclick = Calculadora.press;
 document.getElementById('raiz').onclick = Calculadora.press;
 document.getElementById('dividido').onclick = Calculadora.press;
@@ -84,9 +86,15 @@ document.getElementById('menos').onclick = Calculadora.press;
 document.getElementById('punto').onclick = Calculadora.press;
 document.getElementById('igual').onclick = Calculadora.press;
 document.getElementById('mas').onclick = Calculadora.press;
-document.getElementById("mas").addEventListener("click", Calculadora.sum);
+document.getElementById("mas").addEventListener("click", function(event){
+  Calculadora.boolean(false);
+});
 //document.getElementById("1").addEventListener("click", Calculadora.press);
-document.getElementById("1").addEventListener("click", Calculadora.string);
+document.getElementById("1").addEventListener("click", function(event){
+  Calculadora.identify(this.id);
+});
+//document.getElementById("1").addEventListener("click", Calculadora.identify);
+//document.getElementById("1").addEventListener("click", Calculadora.string1);
 //document.getElementById("1").addEventListener("click", Calculadora.assignNum);
 //document.getElementById('1').onclick = Calculadora.press, Calculadora.asignar;
 document.getElementById('2').onclick = Calculadora.press;
@@ -97,7 +105,7 @@ document.getElementById('6').onclick = Calculadora.press;
 document.getElementById('7').onclick = Calculadora.press;
 document.getElementById('8').onclick = Calculadora.press;
 document.getElementById('9').onclick = Calculadora.press;
-document.getElementById('0').onclick = Calculadora.press;*/
+document.getElementById('0').onclick = Calculadora.press;
 
 
 ////////////////////////////////////////////////////////*/
