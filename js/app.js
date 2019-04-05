@@ -1,5 +1,6 @@
 var string_num_total = "";
 var boolean = true;
+var strtot = [];
 
 var Calculadora = {
 
@@ -28,41 +29,30 @@ var Calculadora = {
     document.getElementById(id).style.width = "22%";
     document.getElementById(id).style.height = "62.91px";
   },
-  string1: function(id){
+  string1: function(i, id){
+
+    console.log("entered string1");
     string_num = id;
     string_num_total = string_num_total + string_num;
-    console.log(string_num_total);
-    return string_num_total;
-  },
-  string2: function(id){
-    string_num = id;
-    string_num_total = string_num_total + string_num;
-    console.log(string_num_total);
-    return string_num_total;
-  },
-  string_to_number: function(){
 
-  },
-  /*assignNum:function(number){
-    //number = document.getElementById(number);
-    console.log(number)
-    number = parseInt(number, 10);
-    console.log("variable type: " + typeof number + number.toString());
+    const ret = strtot.slice(i);
+    ret[i] = string_num_total;
 
-  },*/
-  boolean: function(bool){
-    boolean = bool;
-    return boolean;
+    console.log(ret[i]);
+
+    return ret[i];
   },
+
   identify: function(id){
-    id = this.id;
+    //id = this.id;
     //number = this.id;
     //console.log("ID: " + this.id);
-    if(Calculadora.boolean == true){
+    Calculadora.string1(id, i)
+    /*if(Calculadora.boolean(boolean) === true){
       Calculadora.string1(id);
     }else{
       Calculadora.string2(id);
-    }
+    }*/
     //Calculadora.assignNum(number);
 
   },
@@ -73,7 +63,12 @@ var Calculadora = {
 
 
 };
-
+//replace items in array
+function replaceAt(array, index, value) {
+  const ret = array.slice(0);
+  ret[index] = value;
+  return ret;
+}
 /*Nuevas lineas de codigo*/
 /*//////////*Get element ID with click*//////////////
 
