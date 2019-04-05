@@ -28,8 +28,9 @@ var Calculadora = {
   string1: function(id){
     string_num = id;
     console.log(string_num);
-    if(theNum.includes("-")){
-        theNum = theNum.replace("-","?");
+    if(theNum.includes("-") && string_num === "-"){
+        theNum = parseFloat(theNum) * -1;
+        theNum = theNum.toString();
         //string_num = string_num.split('-').join();
     };
     if(theNum.includes(".")){
@@ -52,7 +53,7 @@ var Calculadora = {
       if(theNum.length>8){
         display.innerHTML = theNum.slice(0, 8);
       }else{
-        display.innerHTML;
+        display.innerHTML = theNum;
       }
     }
     return theNum
@@ -92,8 +93,10 @@ var Calculadora = {
       default:
         result = theNum;
     }
-    if(result.length>8){
-      display.innerHTML = result.slice(0, 8);
+    if(result.toString().length>8){
+      display.innerHTML = result.toString().slice(0, 8);
+    }else{
+      display.innerHTML = result;
     }
     Calculadora.moveNum(result);
     //return theNum;
