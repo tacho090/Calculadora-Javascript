@@ -13,7 +13,8 @@ var Calculadora = {
     elem = document.getElementById(id);
     elem.onclick = Calculadora.click(elem);
     elem.addEventListener("mouseup",function(event){
-      elem.style.transform = "scale(1)";
+      console.log("funciona");
+      //elem.style.transform = "scale(1)";
     })
   },
   click: function(elem){
@@ -56,6 +57,12 @@ var Calculadora = {
     theNum= "";
     return oldNum;
   },
+  /*moveRes: function(string){
+    string = string.toString()
+    oldNum = string;
+    theNum= "";
+    return oldNum;
+  },*/
 
   identify: function(id){
     Calculadora.string1(id);
@@ -90,7 +97,11 @@ var Calculadora = {
     }else{
       display.innerHTML = result.toString().slice(0, 8);
     }
-    Calculadora.moveNum(result);
+    /*oldNum = result.toString();
+    theNum = "";*/
+    theNum = result.toString();
+    Calculadora.moveNum(theNum);
+    //Calculadora.moveRes(result);
     //return theNum;
   },
 
