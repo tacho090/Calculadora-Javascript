@@ -49,7 +49,11 @@ var Calculadora = {
     if(theNum.charAt(0) === "0"){
       theNum = "";
     }else{
-      display.innerHTML = theNum;
+      if(theNum.length>8){
+        display.innerHTML = theNum.slice(0, 8);
+      }else{
+        display.innerHTML;
+      }
     }
     return theNum
   },
@@ -88,9 +92,10 @@ var Calculadora = {
       default:
         result = theNum;
     }
-    display.innerHTML = result;
-    theNum = result;
-    Calculadora.moveNum(theNum);
+    if(result.length>8){
+      display.innerHTML = result.slice(0, 8);
+    }
+    Calculadora.moveNum(result);
     //return theNum;
   },
 
