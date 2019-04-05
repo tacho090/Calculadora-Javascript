@@ -47,7 +47,7 @@ var Calculadora = {
     //id = this.id;
     //number = this.id;
     //console.log("ID: " + this.id);
-    Calculadora.string1(id, i)
+    Calculadora.string1(id, i);
     /*if(Calculadora.boolean(boolean) === true){
       Calculadora.string1(id);
     }else{
