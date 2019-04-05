@@ -26,22 +26,38 @@ var Calculadora = {
 
   //store theNum
   string1: function(id){
-
-    console.log("entered string1");
     string_num = id;
-    theNum = theNum + string_num;
-    display.innerHTML = theNum;
+    console.log(string_num);
+    if(theNum.includes("-")){
+        theNum = theNum.replace("-","?");
+        //string_num = string_num.split('-').join();
+    };
+    if(theNum.includes(".")){
+        string_num = id.replace(".","");
+    };
+    console.log(string_num);
+    if(string_num === "-"){
+      alert("here");
+      theNum = string_num + theNum;
+    }else{
+      theNum = theNum + string_num;
+    };
+
+    console.log("thenum value: " + theNum);
+    //alert(myString.charAt(0));
+
+    if(theNum.charAt(0) === "0"){
+      theNum = "";
+    }else{
+      display.innerHTML = theNum;
+    }
     return theNum
   },
   //store oldNum
   moveNum: function(string){
     string = string.toString()
-    console.log("oldNUm: " + string);
     oldNum = string;
-
-    theNum= " ";
-    console.log("newNum: " + theNum);
-
+    theNum= "";
     return oldNum;
   },
 
@@ -95,14 +111,18 @@ document.getElementById('display').onclick = Calculadora.press;
 //
 
 document.getElementById('on').addEventListener("click", function(event){
-  Calculadora.clear;
+  Calculadora.clear();
 });
-document.getElementById('sign').onclick = Calculadora.press;
+document.getElementById('sign').addEventListener("click", function(event){
+  Calculadora.identify("-");
+});
 document.getElementById('raiz').onclick = Calculadora.press;
 document.getElementById('dividido').onclick = Calculadora.press;
 document.getElementById('por').onclick = Calculadora.press;
 document.getElementById('menos').onclick = Calculadora.press;
-document.getElementById('punto').onclick = Calculadora.press;
+document.getElementById('punto').addEventListener("click", function(event){
+  Calculadora.identify(".");
+});
 document.getElementById('igual').addEventListener("click", function(event){
   Calculadora.operations(operator, oldNum, theNum);
 });
