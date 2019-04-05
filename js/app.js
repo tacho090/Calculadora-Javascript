@@ -9,21 +9,19 @@ var display = document.getElementById('display');
 
 var Calculadora = {
   //change number size when pressed
-  press:function(){
-
-    elem = document.getElementById(this.id);
-    elem.style.width = "18%";
-    elem.style.height = "18%";
-    document.getElementById('1').value = 1;
-    console.log(this.id.value);
-    Calculadora.mouseUp(this.id);
+  press:function(id){
+    elem = document.getElementById(id);
+    elem.onclick = Calculadora.click(elem);
+    elem.addEventListener("mouseup",function(event){
+      elem.style.transform = "scale(1)";
+    })
   },
-  mouseUp: function(id){
-    alert("Button Uppppp, id "+this.id);
-    document.getElementById(id).style.width = "22%";
-    document.getElementById(id).style.height = "62.91px";
+  click: function(elem){
+    elem.style.transform = "scale(0.85)";
   },
-
+  mouseup: function(elem){
+    elem.style.transform = "scale(1)";
+  },
   //store theNum
   string1: function(id){
     string_num = id;
@@ -53,7 +51,6 @@ var Calculadora = {
   },
   //store oldNum
   moveNum: function(string){
-    display.innerHTML = "";
     string = string.toString()
     oldNum = string;
     theNum= "";
@@ -112,36 +109,45 @@ document.getElementById('display').onclick = Calculadora.press;
 //
 
 document.getElementById('on').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.clear();
 });
 document.getElementById('sign').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify("-");
 });
 document.getElementById('raiz').onclick = Calculadora.press;
 document.getElementById('dividido').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   operator = this.id;
   Calculadora.moveNum(theNum);
 });
 document.getElementById('por').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   operator = this.id;
   Calculadora.moveNum(theNum);
 });
 document.getElementById('menos').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   operator = this.id;
   Calculadora.moveNum(theNum);
 });
 document.getElementById('punto').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(".");
 });
 document.getElementById('igual').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.operations(operator, oldNum, theNum);
 });
 document.getElementById("mas").addEventListener("click", function(event){
+  Calculadora.press(this.id);
   operator = this.id;//guarda id de operador para luego usarlo en funcion operations dentro de obj Calculadora
   Calculadora.moveNum(theNum);
 });
 //document.getElementById("1").addEventListener("click", Calculadora.press);
 document.getElementById("1").addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 //document.getElementById("1").addEventListener("click", Calculadora.identify);
@@ -149,45 +155,38 @@ document.getElementById("1").addEventListener("click", function(event){
 //document.getElementById("1").addEventListener("click", Calculadora.assignNum);
 //document.getElementById('1').onclick = Calculadora.press, Calculadora.asignar;
 document.getElementById('2').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('3').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('4').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('5').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('6').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('7').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('8').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('9').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
 document.getElementById('0').addEventListener("click", function(event){
+  Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
-
-
-////////////////////////////////////////////////////////*/
-/*//////////*Get element value from ID*//////////////
-
-/*var number = 0;
-number = document.getElementById('1');
-number.value = 1;
-console.log(number.value);*/
-
-
-/*var boton = document.getElementsByClassName("tecla");//declaracion de objeto boton
-for (property in boton){
-  console.log(boton[property].id);//obtener id de cada boton
-}*/
-////////////////////////////////////////////////////////*/
