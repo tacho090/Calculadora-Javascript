@@ -28,24 +28,17 @@ var Calculadora = {
   string1: function(id){
     string_num = id;
     console.log(string_num);
-    if(theNum.includes("-") && string_num === "-"){
+    if(string_num === "-"){
+      if(theNum.toLowerCase().indexOf("-") === -1){
+        theNum = string_num + theNum;
+      }else{
         theNum = parseFloat(theNum) * -1;
         theNum = theNum.toString();
-        //string_num = string_num.split('-').join();
-    };
-    if(theNum.includes(".")){
-        string_num = id.replace(".","");
-    };
-    console.log(string_num);
-    if(string_num === "-"){
-      alert("here");
-      theNum = string_num + theNum;
+      }
     }else{
       theNum = theNum + string_num;
-    };
-
+    }
     console.log("thenum value: " + theNum);
-    //alert(myString.charAt(0));
 
     if(theNum.charAt(0) === "0"){
       theNum = "";
@@ -60,6 +53,7 @@ var Calculadora = {
   },
   //store oldNum
   moveNum: function(string){
+    display.innerHTML = "";
     string = string.toString()
     oldNum = string;
     theNum= "";
@@ -93,10 +87,11 @@ var Calculadora = {
       default:
         result = theNum;
     }
-    if(result.toString().length>8){
-      display.innerHTML = result.toString().slice(0, 8);
+    if(result.toString().length<8){
+      console.log("resultado: "+ result.toString());
+      display.innerHTML = result.toString();
     }else{
-      display.innerHTML = result;
+      display.innerHTML = result.toString().slice(0, 8);
     }
     Calculadora.moveNum(result);
     //return theNum;
@@ -107,8 +102,6 @@ var Calculadora = {
     theNum = "";
     display.innerHTML = "0";
   }
-
-
 };
 
 
@@ -125,9 +118,18 @@ document.getElementById('sign').addEventListener("click", function(event){
   Calculadora.identify("-");
 });
 document.getElementById('raiz').onclick = Calculadora.press;
-document.getElementById('dividido').onclick = Calculadora.press;
-document.getElementById('por').onclick = Calculadora.press;
-document.getElementById('menos').onclick = Calculadora.press;
+document.getElementById('dividido').addEventListener("click", function(event){
+  operator = this.id;
+  Calculadora.moveNum(theNum);
+});
+document.getElementById('por').addEventListener("click", function(event){
+  operator = this.id;
+  Calculadora.moveNum(theNum);
+});
+document.getElementById('menos').addEventListener("click", function(event){
+  operator = this.id;
+  Calculadora.moveNum(theNum);
+});
 document.getElementById('punto').addEventListener("click", function(event){
   Calculadora.identify(".");
 });
