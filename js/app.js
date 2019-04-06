@@ -25,6 +25,8 @@ var Calculadora = {
     elem.style.transform = "scale(1)";
   },
   //store theNum
+  //data that enters this function is id
+  //string_num then becomes id = 7564
   string1: function(id){
     string_num = id;
     console.log(string_num);
