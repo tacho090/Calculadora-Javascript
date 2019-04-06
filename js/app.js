@@ -11,6 +11,7 @@ var Calculadora = {
   //change number size when pressed
   press:function(id){
     elem = document.getElementById(id);
+    console.log(elem);
     elem.onclick = Calculadora.click(elem);
     elem.addEventListener("mouseup",function(event){
       console.log("funciona");
