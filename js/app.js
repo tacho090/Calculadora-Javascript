@@ -57,6 +57,7 @@ var Calculadora = {
   moveNum: function(string){
     string = string.toString()
     oldNum = string;
+    console.log("oldNum: " + oldNum);
     theNum= "";
     return oldNum;
   },
@@ -102,8 +103,8 @@ var Calculadora = {
     }
     /*oldNum = result.toString();
     theNum = "";*/
-    theNum = result.toString();
-    Calculadora.moveNum(theNum);
+    //theNum = result.toString();
+    Calculadora.moveNum(result);
     //Calculadora.moveRes(result);
     //return theNum;
   },
