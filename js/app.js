@@ -8,14 +8,12 @@ var result;
 var display = document.getElementById('display');
 
 var Calculadora = {
-  //change number size when pressed
   press:function(id){
     elem = document.getElementById(id);
     console.log(elem);
     elem.onclick = Calculadora.click(elem);
     elem.addEventListener("mouseup",function(event){
       console.log("funciona");
-      //elem.style.transform = "scale(1)";
     })
   },
   click: function(elem){
@@ -24,9 +22,6 @@ var Calculadora = {
   mouseup: function(elem){
     elem.style.transform = "scale(1)";
   },
-  //store theNum
-  //data that enters this function is id
-  //string_num then becomes id = 7564
   string1: function(id){
     string_num = id;
     console.log(string_num);
@@ -61,12 +56,6 @@ var Calculadora = {
     theNum= "";
     return oldNum;
   },
-  /*moveRes: function(string){
-    string = string.toString()
-    oldNum = string;
-    theNum= "";
-    return oldNum;
-  },*/
 
   identify: function(id){
     Calculadora.string1(id);
@@ -74,11 +63,8 @@ var Calculadora = {
 
   operations: function(operator, oldNum, theNum){
     console.log("Entered operations");
-    //Convert string to float
     oldNum = parseFloat(oldNum);
-    //console.log(oldNum);
     theNum = parseFloat(theNum);
-    //console.log(theNum);
     switch(operator){
       case "mas":
         result = oldNum + theNum;
@@ -101,12 +87,7 @@ var Calculadora = {
     }else{
       display.innerHTML = result.toString().slice(0, 8);
     }
-    /*oldNum = result.toString();
-    theNum = "";*/
-    //theNum = result.toString();
     Calculadora.moveNum(result);
-    //Calculadora.moveRes(result);
-    //return theNum;
   },
 
   clear: function() {
@@ -115,14 +96,6 @@ var Calculadora = {
     display.innerHTML = "0";
   }
 };
-
-
-/*//////////*Get element ID with click*//////////////
-
-//get display
-document.getElementById('display').onclick = Calculadora.press;
-//
-
 document.getElementById('on').addEventListener("click", function(event){
   Calculadora.press(this.id);
   Calculadora.clear();
@@ -165,10 +138,6 @@ document.getElementById("1").addEventListener("click", function(event){
   Calculadora.press(this.id);
   Calculadora.identify(this.id);
 });
-//document.getElementById("1").addEventListener("click", Calculadora.identify);
-//document.getElementById("1").addEventListener("click", Calculadora.string1);
-//document.getElementById("1").addEventListener("click", Calculadora.assignNum);
-//document.getElementById('1').onclick = Calculadora.press, Calculadora.asignar;
 document.getElementById('2').addEventListener("click", function(event){
   Calculadora.press(this.id);
   Calculadora.identify(this.id);

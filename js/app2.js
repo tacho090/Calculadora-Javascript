@@ -5,13 +5,7 @@ var display = document.getElementById('display');
 
 
 var Calculadora ={
-  createNumber: function(){
-    document.getElementById('1').addEventListener('click', function(event){
-      Calculadora.createNumber(this.id);
-    });
-    document.getElementById('2').addEventListener('click', function(event){
-      Calculadora.createNumber(this.id);
-    });
+  createNumber: function(id){
     newNum = newNum + id;
     console.log(newNum);
     display.innerHTML = newNum;
@@ -24,8 +18,14 @@ var Calculadora ={
   },
 
   capture:function(){
+    document.getElementById('1').addEventListener('click', function(event){
+      Calculadora.createNumber(this.id);
+
+    });
+    document.getElementById('2').addEventListener('click', function(event){
+      Calculadora.createNumber(this.id);
+    });
     document.getElementById('mas').addEventListener('click', function(event){
-      Calculadora.moveNum(newNum);
       oldNum = parseFloat(oldNum);
       newNum = parseFloat(newNum);
       result = newNum + oldNum;
