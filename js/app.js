@@ -60,6 +60,24 @@ var Calculadora = {
   identify: function(id){
     Calculadora.string1(id);
   },
+  equals: function(result, theNum, operator){
+    switch(operator){
+      case "mas":
+        result = result + theNum;
+        break;
+      case "menos":
+        result = result - theNum;
+        break;
+      case "por":
+        result = result * theNum;
+        break;
+      case "dividido":
+        result = result / theNum;
+        break;
+      default:
+        result = result;
+    }
+  },
 
   operations: function(operator, oldNum, theNum){
     console.log("Entered operations");
@@ -87,7 +105,9 @@ var Calculadora = {
     }else{
       display.innerHTML = result.toString().slice(0, 8);
     }
-    Calculadora.moveNum(result);
+    document.getElementById('igual').addEventListener('click', function(event){
+      let equal = equals(operator, result, theNum)
+    });
   },
 
   clear: function() {
