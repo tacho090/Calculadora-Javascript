@@ -60,7 +60,8 @@ var Calculadora = {
   identify: function(id){
     Calculadora.string1(id);
   },
-  equals: function(result, theNum, operator){
+  equals: function(operator, result, theNum){
+    console.log('****entrado a equals****');
     switch(operator){
       case "mas":
         result = result + theNum;
@@ -77,10 +78,37 @@ var Calculadora = {
       default:
         result = result;
     }
+    if(result.toString().length<8){
+      console.log("resultado: "+ result.toString());
+      display.innerHTML = result.toString();
+    }else{
+      display.innerHTML = result.toString().slice(0, 8);
+    }
+
+    //Capturar nuevo operador
+    console.log('Captura nuevo operador');
+    operator = Calculadora.captureOps();
+    console.log(operator);
+    console.log('Captura nuevo theNum');
+    theNum = Calculadora.captureNumber();
+
+    document.getElementById('igual').addEventListener('click', function(event){
+      Calculadora.equals(operator, result, theNum)
+    });
+  },
+  captureOps: function(){
+    document.getElementById('mas').addEventListener('click', function(event){
+      return this.id;
+    });
+  },
+  captureNumber: function(){
+    document.getElementById('3').addEventListener('click', function(event){
+
+    });
   },
 
-  operations: function(operator, oldNum, theNum){
-    console.log("Entered operations");
+  /*operations: function(operator, oldNum, theNum){
+    //console.log("Entered operations");
     oldNum = parseFloat(oldNum);
     theNum = parseFloat(theNum);
     switch(operator){
@@ -100,15 +128,15 @@ var Calculadora = {
         result = theNum;
     }
     if(result.toString().length<8){
-      console.log("resultado: "+ result.toString());
+      //console.log("resultado: "+ result.toString());
       display.innerHTML = result.toString();
     }else{
       display.innerHTML = result.toString().slice(0, 8);
     }
     document.getElementById('igual').addEventListener('click', function(event){
-      let equal = equals(operator, result, theNum)
+      let equal = Calculadora.equals(operator, result, theNum)
     });
-  },
+  },*/
 
   clear: function() {
     oldNum = "";
