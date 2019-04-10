@@ -8,6 +8,23 @@ var result;
 var display = document.getElementById('display');
 
 var Calculadora = {
+  el: function(element) {
+    if (element.charAt(0) === "#") { // If passed  ID...
+      return document.querySelector(element); // ... returns single element
+    }else{
+      console.log(document.querySelectorAll(element));
+      return document.querySelectorAll(element);
+    };
+  },
+  setNum : function() {
+    if (resultNum) { // If a result was displayed, reset number
+      theNum = this.getAttribute("id");
+      resultNum = "";
+    } else { // Otherwise, add digit to previous number (this is a string!)
+      theNum += this.getAttribute("id");
+      console.log(theNum);
+    }
+  },
   press:function(id){
     elem = document.getElementById(id);
     console.log(elem);
@@ -144,6 +161,21 @@ var Calculadora = {
     display.innerHTML = "0";
   }
 };
+
+var resultNum,
+theNum ='';//current number
+setNum = '';
+
+
+var nums = Calculadora.el(".tecla");//lista de teclas
+
+// Add click event to numbers
+for (var i = 0, l = nums.length; i < l; i++) {
+nums[i].onclick = Calculadora.setNum;
+};
+
+
+/*
 document.getElementById('on').addEventListener("click", function(event){
   Calculadora.press(this.id);
   Calculadora.clear();
@@ -221,4 +253,4 @@ document.getElementById('9').addEventListener("click", function(event){
 document.getElementById('0').addEventListener("click", function(event){
   Calculadora.press(this.id);
   Calculadora.identify(this.id);
-});
+});*/
