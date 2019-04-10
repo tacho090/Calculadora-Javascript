@@ -1,22 +1,49 @@
-var string_num_total = "";
-var boolean = 0;
-var strtot = [];
 var oldNum = ""; // First number
 var theNum = ""; // Current number
 var operator;
-var result;
+var result = 0;
 var display = document.getElementById('display');
+
 
 var Calculadora = {
   el: function(element) {
+    console.log(element);
+    /*if(element === '1'||'2'){
+      console.log(document.getElementById(element));
+    //console.log(document.querySelectorAll('[id^=element]'));
+    //console.log(document.querySelectorAll(element));
+    return document.getElementById(element);
+  }*/
     if (element.charAt(0) === "#") { // If passed  ID...
       return document.querySelector(element); // ... returns single element
     }else{
+        //console.log(document.getElementById(element));
+      //console.log(document.querySelectorAll('[id^=element]'));
       console.log(document.querySelectorAll(element));
       return document.querySelectorAll(element);
-    };
+    //};*/
+    }
+  },
+  el_ops: function(element) {
+    console.log(element);
+    /*if(element === '1'||'2'){
+      console.log(document.getElementById(element));
+    //console.log(document.querySelectorAll('[id^=element]'));
+    //console.log(document.querySelectorAll(element));
+    return document.getElementById(element);
+  }*/
+    if (element.charAt(0) === "#") { // If passed  ID...
+      return document.getElementById(element); // ... returns single element
+    }else{
+        //console.log(document.getElementById(element));
+      //console.log(document.querySelectorAll('[id^=element]'));
+      //console.log(document.querySelectorAll(element));
+      return document.getElementById(element);
+    //};*/
+    }
   },
   setNum : function() {
+    console.log('entered setNum');
     if (resultNum) { // If a result was displayed, reset number
       theNum = this.getAttribute("id");
       resultNum = "";
@@ -24,8 +51,12 @@ var Calculadora = {
       theNum += this.getAttribute("id");
       console.log(theNum);
     }
+    display.innerHTML = theNum;
+    console.log('theNum: ' + theNum);
+    return theNum;
   },
-  string1: function(id){
+
+  clean_str: function(id){
     string_num = id;
     console.log(string_num);
     if(string_num === "-"){
@@ -52,39 +83,54 @@ var Calculadora = {
     return theNum
   },
 
-  moveNum: function(string){
-    string = string.toString()
-    oldNum = string;
-    console.log("oldNum: " + oldNum);
-    theNum= "";
+  moveNum: function(){
+    oldNum = theNum;
+    theNum = "";
+    operator = this.getAttribute("id");
     return oldNum;
   },
 
-  equals: function(operator, result, theNum){
+  equals: function(){
     console.log('****entrado a equals****');
+    console.log('theNum: ' + theNum);
+    console.log('OldNum: ' + oldNum);
+    console.log('*****************************************');
+
+    //string parseFloat
+    oldNum = parseFloat(oldNum);
+    theNum = parseFloat(theNum);
+
     switch(operator){
       case "mas":
-        result = result + theNum;
+        result = oldNum + theNum;
         break;
       case "menos":
-        result = result - theNum;
+        result = oldNum - theNum;
         break;
       case "por":
-        result = result * theNum;
+        result = oldNum * theNum;
         break;
       case "dividido":
-        result = result / theNum;
+        result = oldNum / theNum;
         break;
       default:
-        result = result;
+        result = theNum;
     }
     if(result.toString().length<8){
-      console.log("resultado: "+ result.toString());
       display.innerHTML = result.toString();
     }else{
       display.innerHTML = result.toString().slice(0, 8);
     }
+    display.innerHTML = result;
+
+    oldNum = result;
+
+    console.log('theNum: ' + theNum);
+    console.log('OldNum: ' + oldNum);
+    console.log('result: ' + result);
+
   },
+
   clear: function() {
     oldNum = "";
     theNum = "";
@@ -93,13 +139,27 @@ var Calculadora = {
 };
 
 var resultNum,
-theNum ='';//current number
-setNum = '';
+theNum ='',//current number
+setNum = '',
+igual = Calculadora.el("#igual");
+suma = Calculadora.el('#mas');
 
-
-var nums = Calculadora.el(".tecla");//lista de teclas
-
-// Add click event to numbers
+var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
   nums[i].onclick = Calculadora.setNum;
-};
+ };
+
+// Add click event to operators
+// for (var i = 0, l = ops.length; i < l; i++) {
+//   console.log('ops: entered for loop');
+//   ops[i].onclick = Calculadora.moveNum;
+// };
+
+// Add click event to operators
+suma.onclick = Calculadora.moveNum;
+
+// Add click event to equal sign
+igual.onclick = Calculadora.equals;
+
+// Add click event to clear button
+Calculadora.el("#on").onclick = Calculadora.clear;
