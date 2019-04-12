@@ -36,6 +36,22 @@ var Calculadora = {
     return theNum;
   },
 
+  negative: function(){
+    console.log('*********multiplicado por negativo************');
+
+    if(theNum.toLowerCase().indexOf("-") === -1){
+      theNum = '-' + theNum;
+    }else{
+      theNum = parseFloat(theNum) * -1;
+      theNum = theNum.toString();
+    }
+    display.innerHTML = theNum;
+
+    console.log("theNum value: " + theNum);
+    console.log('*****************************************');
+    return theNum;
+  },
+
   clean_str: function(id){
     string_num = id;
     console.log(string_num);
@@ -127,11 +143,12 @@ var Calculadora = {
 var resultNum,
 theNum ='',//current number
 setNum = '',
-igual = Calculadora.el("#igual");
-suma = Calculadora.el('#mas');
-resta = Calculadora.el('#menos');
-multip = Calculadora.el('#por');
-divd = Calculadora.el('#dividido');
+igual = Calculadora.el("#igual"),
+suma = Calculadora.el('#mas'),
+resta = Calculadora.el('#menos'),
+multip = Calculadora.el('#por'),
+divd = Calculadora.el('#dividido'),
+sign = Calculadora.el('#sign')
 
 var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
@@ -149,6 +166,7 @@ suma.onclick = Calculadora.moveNum;
 resta.onclick = Calculadora.moveNum;
 multip.onclick = Calculadora.moveNum;
 divd.onclick = Calculadora.moveNum;
+sign.onclick = Calculadora.negative;
 
 // Add click event to equal sign
 igual.onclick = Calculadora.equals;
