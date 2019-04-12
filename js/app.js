@@ -52,6 +52,17 @@ var Calculadora = {
     return theNum;
   },
 
+  point: function(){
+    console.log('*********agregar punto************');
+    if(theNum.toLowerCase().indexOf(".") === -1){
+      theNum = theNum + '.';
+      display.innerHTML = theNum;
+    }else{
+      theNum = theNum;
+    }
+    return theNum;
+  },
+
   clean_str: function(id){
     string_num = id;
     console.log(string_num);
@@ -148,7 +159,8 @@ suma = Calculadora.el('#mas'),
 resta = Calculadora.el('#menos'),
 multip = Calculadora.el('#por'),
 divd = Calculadora.el('#dividido'),
-sign = Calculadora.el('#sign')
+sign = Calculadora.el('#sign'),
+punto = Calculadora.el('#punto')
 
 var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
@@ -167,6 +179,7 @@ resta.onclick = Calculadora.moveNum;
 multip.onclick = Calculadora.moveNum;
 divd.onclick = Calculadora.moveNum;
 sign.onclick = Calculadora.negative;
+punto.onclick = Calculadora.point;
 
 // Add click event to equal sign
 igual.onclick = Calculadora.equals;
