@@ -27,8 +27,12 @@ var Calculadora = {
       theNum = this.getAttribute("id");
       resultNum = "";
     } else { // Otherwise, add digit to previous number (this is a string!)
-      theNum += this.getAttribute("id");
-      console.log(theNum);
+      if (this.getAttribute("id") === '0'){
+        
+      }else{
+        theNum += this.getAttribute("id");
+        console.log(theNum);
+      }
     }
     display.innerHTML = theNum;
     console.log('theNum: ' + theNum);
@@ -61,6 +65,16 @@ var Calculadora = {
       theNum = theNum;
     }
     return theNum;
+  },
+
+  cero: function(){
+    console.log('*************agregado cero********************');
+    if(theNum.toLowerCase().indexOf("0") === 0){
+      theNum = theNum + '.';
+      display.innerHTML = theNum;
+    }else{
+      theNum = theNum;
+    }
   },
 
   clean_str: function(id){
@@ -160,7 +174,8 @@ resta = Calculadora.el('#menos'),
 multip = Calculadora.el('#por'),
 divd = Calculadora.el('#dividido'),
 sign = Calculadora.el('#sign'),
-punto = Calculadora.el('#punto')
+punto = Calculadora.el('#punto'),
+cero = Calculadora.el('#0');
 
 var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
@@ -180,6 +195,7 @@ multip.onclick = Calculadora.moveNum;
 divd.onclick = Calculadora.moveNum;
 sign.onclick = Calculadora.negative;
 punto.onclick = Calculadora.point;
+cero.onclick = Calculadora.cero;
 
 // Add click event to equal sign
 igual.onclick = Calculadora.equals;
