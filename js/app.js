@@ -6,6 +6,7 @@ var display = document.getElementById('display');
 
 
 var Calculadora = {
+
   el: function(element) {
     if (element.charAt(0) === "#") { // If passed  ID...
       return document.querySelector(element); // ... returns single element
@@ -13,14 +14,7 @@ var Calculadora = {
       return document.querySelectorAll(element);
     }
   },
-  /*el_ops: function(element) {
-    console.log(element);
-    if (element.charAt(0) === "#") { // If passed  ID...
-      return document.getElementById(element); // ... returns single element
-    }else{
-      return document.getElementById(element);
-    }
-  },*/
+
   setNum : function() {
     console.log('***********entered setNum************');
     if (resultNum) { // If a result was displayed, reset number
@@ -29,15 +23,16 @@ var Calculadora = {
     } else { // Otherwise, add digit to previous number (this is a string!)
       if (this.getAttribute("id") === '0'){
         theNum += this.getAttribute("id");
-        if(theNum.toLowerCase(),indexOf('0' === 0)){
-          theNum = '0';
+        if(theNum.toLowerCase().indexOf('0' === 0)){
+          theNum = '';
+          display.innerHTML = '0';
         }
       }else{
         theNum += this.getAttribute("id");
         console.log(theNum);
+        display.innerHTML = theNum;
       }
     }
-    display.innerHTML = theNum;
     console.log('theNum: ' + theNum);
     console.log('***************************************');
     return theNum;
