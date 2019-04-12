@@ -28,7 +28,10 @@ var Calculadora = {
       resultNum = "";
     } else { // Otherwise, add digit to previous number (this is a string!)
       if (this.getAttribute("id") === '0'){
-        
+        theNum += this.getAttribute("id");
+        if(theNum.toLowerCase(),indexOf('0' === 0)){
+          theNum = '0';
+        }
       }else{
         theNum += this.getAttribute("id");
         console.log(theNum);
@@ -174,8 +177,8 @@ resta = Calculadora.el('#menos'),
 multip = Calculadora.el('#por'),
 divd = Calculadora.el('#dividido'),
 sign = Calculadora.el('#sign'),
-punto = Calculadora.el('#punto'),
-cero = Calculadora.el('#0');
+punto = Calculadora.el('#punto');
+//cero = Calculadora.el('#0');
 
 var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
@@ -195,7 +198,7 @@ multip.onclick = Calculadora.moveNum;
 divd.onclick = Calculadora.moveNum;
 sign.onclick = Calculadora.negative;
 punto.onclick = Calculadora.point;
-cero.onclick = Calculadora.cero;
+// cero.onclick = Calculadora.cero;
 
 // Add click event to equal sign
 igual.onclick = Calculadora.equals;
