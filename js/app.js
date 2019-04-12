@@ -20,7 +20,7 @@ var Calculadora = {
     if (resultNum) { // If a result was displayed, reset number
       theNum = this.getAttribute("id");
       resultNum = "";
-    } else { // Otherwise, add digit to previous number (this is a string!)
+    } else {
       if (this.getAttribute("id") === '0'){
         theNum += this.getAttribute("id");
         if(theNum.toLowerCase().indexOf('0' === 0)){
@@ -63,43 +63,6 @@ var Calculadora = {
       theNum = theNum;
     }
     return theNum;
-  },
-
-  cero: function(){
-    console.log('*************agregado cero********************');
-    if(theNum.toLowerCase().indexOf("0") === 0){
-      theNum = theNum + '.';
-      display.innerHTML = theNum;
-    }else{
-      theNum = theNum;
-    }
-  },
-
-  clean_str: function(id){
-    string_num = id;
-    console.log(string_num);
-    if(string_num === "-"){
-      if(theNum.toLowerCase().indexOf("-") === -1){
-        theNum = string_num + theNum;
-      }else{
-        theNum = parseFloat(theNum) * -1;
-        theNum = theNum.toString();
-      }
-    }else{
-      theNum = theNum + string_num;
-    }
-    console.log("thenum value: " + theNum);
-
-    if(theNum.charAt(0) === "0"){
-      theNum = "";
-    }else{
-      if(theNum.length>8){
-        display.innerHTML = theNum.slice(0, 8);
-      }else{
-        display.innerHTML = theNum;
-      }
-    }
-    return theNum
   },
 
   moveNum: function(){
@@ -145,9 +108,9 @@ var Calculadora = {
     }else{
       display.innerHTML = result.toString().slice(0, 8);
     }
-    display.innerHTML = result;
 
-    theNum = result;
+    theNum = result.toString();
+    oldNum = oldNum.toString();
 
     console.log('****operacion realizada****');
     console.log('theNum: ' + theNum);
@@ -163,6 +126,7 @@ var Calculadora = {
   }
 };
 
+//Variable declarations for DOM id
 var resultNum,
 theNum ='',//current number
 setNum = '',
@@ -173,18 +137,11 @@ multip = Calculadora.el('#por'),
 divd = Calculadora.el('#dividido'),
 sign = Calculadora.el('#sign'),
 punto = Calculadora.el('#punto');
-//cero = Calculadora.el('#0');
 
 var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
   nums[i].onclick = Calculadora.setNum;
  };
-
-// Add click event to operators
-// for (var i = 0, l = ops.length; i < l; i++) {
-//   console.log('ops: entered for loop');
-//   ops[i].onclick = Calculadora.moveNum;
-// };
 
 // Add click event to operators
 suma.onclick = Calculadora.moveNum;
@@ -193,7 +150,6 @@ multip.onclick = Calculadora.moveNum;
 divd.onclick = Calculadora.moveNum;
 sign.onclick = Calculadora.negative;
 punto.onclick = Calculadora.point;
-// cero.onclick = Calculadora.cero;
 
 // Add click event to equal sign
 igual.onclick = Calculadora.equals;
