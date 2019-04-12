@@ -1,1 +1,1 @@
-console.log(document.querySelectorAll('[id^="1"]'));
+console.log(document.querySelectorAll('[id^=element]'));

@@ -143,6 +143,9 @@ theNum ='',//current number
 setNum = '',
 igual = Calculadora.el("#igual");
 suma = Calculadora.el('#mas');
+resta = Calculadora.el('#menos');
+multip = Calculadora.el('#multiplica');
+divd = Calculadora.el('#divide');
 
 var nums = Calculadora.el('.tecla');//lista de teclas
 for (var i = 0, l = nums.length; i < l; i++) {
