@@ -1,92 +1,204 @@
+var string_num_total = "";
+var boolean = 0;
+var strtot = [];
+var oldNum = ""; // First number
+var theNum = ""; // Current number
+var operator;
+var result;
+var display = document.getElementById('display');
 
 var Calculadora = {
-
-  button: function(){
-    //event handler
-    var boton = document.getElementsByClassName("tecla");
-    for (property in boton){
-    console.log(property);
-    boton[property].addEventListener("click",this.pressCSS());
-    }
-  },
-
   //change number size when pressed
-  pressCSS:function(){
-    //console.log(button);
-    alert("button pressed");
-    button[0].style.width = "50%";
-    elem = document.getElementsByClassName("tecla");
-    elem.style.width = "50%";
-    elem.style.height = "50%";
+  press:function(id){
+    elem = document.getElementById(id);
+    console.log(elem);
+    elem.onclick = Calculadora.click(elem);
+    elem.addEventListener("mouseup",function(event){
+      console.log("funciona");
+      //elem.style.transform = "scale(1)";
+    })
+  },
+  click: function(elem){
+    elem.style.transform = "scale(0.85)";
+  },
+  mouseup: function(elem){
+    elem.style.transform = "scale(1)";
+  },
+  //store theNum
+  string1: function(id){
+    string_num = id;
+    console.log(string_num);
+    if(string_num === "-"){
+      if(theNum.toLowerCase().indexOf("-") === -1){
+        theNum = string_num + theNum;
+      }else{
+        theNum = parseFloat(theNum) * -1;
+        theNum = theNum.toString();
+      }
+    }else{
+      theNum = theNum + string_num;
+    }
+    console.log("thenum value: " + theNum);
 
+    if(theNum.charAt(0) === "0"){
+      theNum = "";
+    }else{
+      if(theNum.length>8){
+        display.innerHTML = theNum.slice(0, 8);
+      }else{
+        display.innerHTML = theNum;
+      }
+    }
+    return theNum
+  },
+  //store oldNum
+  moveNum: function(string){
+    string = string.toString()
+    oldNum = string;
+    theNum= "";
+    return oldNum;
+  },
+  /*moveRes: function(string){
+    string = string.toString()
+    oldNum = string;
+    theNum= "";
+    return oldNum;
+  },*/
+
+  identify: function(id){
+    Calculadora.string1(id);
+  },
+
+  operations: function(operator, oldNum, theNum){
+    console.log("Entered operations");
+    //Convert string to float
+    oldNum = parseFloat(oldNum);
+    //console.log(oldNum);
+    theNum = parseFloat(theNum);
+    //console.log(theNum);
+    switch(operator){
+      case "mas":
+        result = oldNum + theNum;
+        break;
+      case "menos":
+        result = oldNum - theNum;
+        break;
+      case "por":
+        result = oldNum * theNum;
+        break;
+      case "dividido":
+        result = oldNum / theNum;
+        break;
+      default:
+        result = theNum;
+    }
+    if(result.toString().length<8){
+      console.log("resultado: "+ result.toString());
+      display.innerHTML = result.toString();
+    }else{
+      display.innerHTML = result.toString().slice(0, 8);
+    }
+    /*oldNum = result.toString();
+    theNum = "";*/
+    theNum = result.toString();
+    Calculadora.moveNum(theNum);
+    //Calculadora.moveRes(result);
+    //return theNum;
+  },
+
+  clear: function() {
+    oldNum = "";
+    theNum = "";
+    display.innerHTML = "0";
   }
-  /*//stores value in display
-  store:func(){
-
-  },
-  //Validate if more than 8 numbers
-  validate:func(){
-
-  },
-  //Reset calculator
-  reset:func(){
-
-  },
-  negative:func(){
-
-  },
-  empty:func(){
-
-  }*/
-
 };
 
-//var boton = document.getElementsByClassName("tecla")[0].id;
-
-var boton = document.getElementsByClassName("tecla");//declaracion de objeto boton
-for (property in boton){
-  console.log(boton[property].id);//obtener id de cada boton
-}
-
-function reply_click()
-{
-    alert("nueva alerta +" + event.srcElement.id);
-}
 
 /*//////////*Get element ID with click*//////////////
 
-var reply_click = function()
-{
-  alert("Button clicked, id "+this.id);
-  elem = document.getElementById(this.id);
-  elem.style.width = "50%";
-  elem.style.height = "50%";
+//get display
+document.getElementById('display').onclick = Calculadora.press;
+//
 
-}
-document.getElementById('on').onclick = reply_click;
-document.getElementById('1').onclick = reply_click;
-document.getElementById('2').onclick = reply_click;
-document.getElementById('3').onclick = reply_click;
-document.getElementById('4').onclick = reply_click;
-document.getElementById('5').onclick = reply_click;
-document.getElementById('6').onclick = reply_click;
-document.getElementById('7').onclick = reply_click;
-document.getElementById('8').onclick = reply_click;
-document.getElementById('9').onclick = reply_click;
-document.getElementById('0').onclick = reply_click;
-
-//boton[property].addEventListener("click",this.pressCSS());
-////////////////////////////////////////////////////////*/
-
-//button.onclick = Calculadora.pressCSS;
-
-//button is an object
-//function press(){
-
-//}
-//button[0].addEventListener("click",Calculadora.pressCSS);
-
-//console.log(button[0]);
-
-//document.getElementsByClassName("tecla").style.width = "50%";
-//document.getElementById("0").style.width = "50%";
+document.getElementById('on').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.clear();
+});
+document.getElementById('sign').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify("-");
+});
+document.getElementById('raiz').onclick = Calculadora.press;
+document.getElementById('dividido').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  operator = this.id;
+  Calculadora.moveNum(theNum);
+});
+document.getElementById('por').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  operator = this.id;
+  Calculadora.moveNum(theNum);
+});
+document.getElementById('menos').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  operator = this.id;
+  Calculadora.moveNum(theNum);
+});
+document.getElementById('punto').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(".");
+});
+document.getElementById('igual').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.operations(operator, oldNum, theNum);
+});
+document.getElementById("mas").addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  operator = this.id;//guarda id de operador para luego usarlo en funcion operations dentro de obj Calculadora
+  Calculadora.moveNum(theNum);
+});
+//document.getElementById("1").addEventListener("click", Calculadora.press);
+document.getElementById("1").addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+//document.getElementById("1").addEventListener("click", Calculadora.identify);
+//document.getElementById("1").addEventListener("click", Calculadora.string1);
+//document.getElementById("1").addEventListener("click", Calculadora.assignNum);
+//document.getElementById('1').onclick = Calculadora.press, Calculadora.asignar;
+document.getElementById('2').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('3').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('4').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('5').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('6').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('7').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('8').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('9').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
+document.getElementById('0').addEventListener("click", function(event){
+  Calculadora.press(this.id);
+  Calculadora.identify(this.id);
+});
